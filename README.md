@@ -1,7 +1,19 @@
-### 1. 改造vuex以及确定工作流
- 分文件以及使用actionsType  -> actions -> mutations -> state
+### 目的
+1. 很久没用ts以及Vue3做一个小项目复习一下；
+2. 学习vue3中hooks方式编程；
+3. 架构布局复习；（为公司新项目做铺垫）
 
-### 2. 组件分析
 
-输入框组件 Input
-如何将输入的值保存到state中去
+### 项目技术栈
+vue3 + ts + egg
+
+
+### 请求流程
+前端post请求 -> node转接请求（实现分页） -> 聚合数据平台 -> 返回数据
+
+
+### 后端启动
+cd api -> npm install
+
+
+### 前端启动
