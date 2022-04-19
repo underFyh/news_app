@@ -1,6 +1,7 @@
-import { INavItem } from './common';
+import { INavItem, NEWS_TYPE } from './common';
 
 
 export {
-    INavItem
+    INavItem,
+    NEWS_TYPE
 }

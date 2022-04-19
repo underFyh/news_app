@@ -9,12 +9,21 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {getNewsList} from "@/server";
+import {defineComponent, onMounted} from 'vue';
+import {NEWS_TYPE} from "@/typing";
 
 export default defineComponent({
     name: 'Home',
     setup() {
-
+        onMounted(async () => {
+            const data = await getNewsList({
+                type: NEWS_TYPE.TIYU,
+                pageNum: 1,
+                count: 5
+            })
+            console.log(data);
+        })
     }
 });
 </script>
