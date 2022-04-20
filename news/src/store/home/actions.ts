@@ -1,7 +1,8 @@
-import { SET_NEW_LIST, SET_LOADING } from "@/store/home/actionTypes";
+import { SET_NEW_LIST, SET_LOADING, SET_NEWS_TYPE } from "@/store/home/actionTypes";
 import { Commit } from "vuex";
 import {IHomeState, INewsInfo} from "@/typing/homeStore";
 import {getNewsList, IPostData} from "@/server";
+import {INavBarItem} from "@/typing";
 
 
 export default {
@@ -20,5 +21,8 @@ export default {
         }).catch((err) => {
             throw err;
         })
+    },
+    [SET_NEWS_TYPE]({commit, state}: {commit: Commit, state: IHomeState}, navItem: INavBarItem) {
+        commit(SET_NEWS_TYPE, navItem)
     }
 }

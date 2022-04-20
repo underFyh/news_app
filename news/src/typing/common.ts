@@ -1,8 +1,10 @@
+// 图标接口
 interface IIconData {
     iconName: string;
     iconPath: string;
 }
 
+// 导航配置接口
 interface INavItem {
     name: string; // 导航名
     title: string; // 标题名
@@ -10,6 +12,7 @@ interface INavItem {
     right?: IIconData; // 右边icon配置
 }
 
+// 枚举分类
 enum NEWS_TYPE {
     TOP = 'top',
     SHEHUI = 'shehui',
@@ -22,8 +25,16 @@ enum NEWS_TYPE {
     SHISHANG = 'shishang',
 }
 
+// 子导航每项
+interface INavBarItem {
+    title: string;
+    type: NEWS_TYPE;
+    index: number;
+}
+
 
 export {
     INavItem,
-    NEWS_TYPE
+    NEWS_TYPE,
+    INavBarItem
 }

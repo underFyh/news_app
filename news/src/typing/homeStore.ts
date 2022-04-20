@@ -1,5 +1,6 @@
 import {NEWS_TYPE} from "@/typing/common";
 
+// home store 新闻数据类型
 export interface INewsList {
     hasMore: boolean;
     isLoading: boolean;
@@ -8,6 +9,7 @@ export interface INewsList {
     news: INewsInfo[];
 }
 
+// 数据返回类型
 export interface INewsInfo {
     uniquekey: string;
     title: string;
@@ -21,11 +23,13 @@ export interface INewsInfo {
     thumbnail_pic_s03?: string;
 }
 
+// homeState 数据类型
 export interface IHomeState {
     currentType: NEWS_TYPE;
     newList: INewsList
 }
 
+// 请求接口数据类型
 export interface IPostNewsData {
     type: NEWS_TYPE;
     pageNum: number;
