@@ -1,29 +1,28 @@
 <template>
-    <div class="home">
-        <NavBar
-            :dataList="barListData"
-            @setCurNavType="setCurNavType"
-        />
-        <div class="container">
-            <router-link to="/">home</router-link>
-            <router-link to="/detail">detail</router-link>
-            <router-link to="/collection">collection</router-link>
-        </div>
+    <NavBar
+        :dataList="barListData"
+        @setCurNavType="setCurNavType"
+    />
+    <div class="home" ref="newListRef">
+        <NewsList :newsList="newsList"/>
     </div>
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {defineComponent, ref} from 'vue';
 import {Store, useStore} from 'vuex';
 import {useNewsList} from '@/hooks/home';
+import { useLoadMore } from '@/hooks/index'
 import NavBar from '@/components/NavBar/index.vue';
+import NewsList from '@/components/NewsList/index.vue'
 import {INavBarItem, NEWS_TYPE} from "@/typing";
-import {SET_NEWS_TYPE} from "@/store/home/actionTypes";
+import {SET_NEWS_TYPE, SET_NEW_LIST} from "@/store/home/actionTypes";
 
 export default defineComponent({
     name: 'Home',
     components: {
-        NavBar
+        NavBar,
+        NewsList
     },
     setup() {
        const barListData: INavBarItem[] = [
@@ -38,17 +37,24 @@ export default defineComponent({
            { title: '时尚', type: NEWS_TYPE.SHISHANG, index: 8}
        ];
        const store: Store<any> = useStore();
-       const newsList = useNewsList(store);
-       console.log(newsList);
+       let newsList = useNewsList(store);
+       const newListRef = ref<null | HTMLElement>(null);
 
        const setCurNavType = (v: INavBarItem) => {
            console.log(v, 'home');
            store.dispatch(`home/${SET_NEWS_TYPE}`, v)
+           // 获取新结果
+           newsList = useNewsList(store)
        }
 
-       return {
+        const { isLoading, hasMore } = useLoadMore(store, 'home', SET_NEW_LIST, newListRef)
+        console.log(isLoading, hasMore);
+
+        return {
            barListData,
-           setCurNavType
+           setCurNavType,
+           newsList,
+           newListRef
        }
     }
 });
@@ -56,7 +62,7 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .home {
-    height: calc(100vh - 44px);
+    height: calc(100vh - 74px);
     overflow: scroll;
 }
 </style>

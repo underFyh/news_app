@@ -19,6 +19,7 @@ export interface INewsInfo {
     url: string;
     is_content: string;
     thumbnail_pic_s?: string;
+    thumbnail_pic_s01?: string;
     thumbnail_pic_s02?: string;
     thumbnail_pic_s03?: string;
 }

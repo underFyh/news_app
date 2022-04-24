@@ -1,5 +1,7 @@
-import { useRouteInfo } from './common';
+import { useRouteInfo, useImgLoad, useLoadMore } from './common';
 
 export {
-    useRouteInfo
+    useRouteInfo,
+    useImgLoad,
+    useLoadMore
 }

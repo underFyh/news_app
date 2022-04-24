@@ -7,6 +7,7 @@ export default {
         state.newList.isLoading = isLoading;
     },
     [SET_NEW_LIST](state: IHomeState, payload: IReturnData) {
+        console.log(payload, 'aaa');
         if (payload.hasMore) {
             state.newList.news = [...state.newList.news, ...payload.data!];
             state.newList.pageNum +=1;
@@ -16,7 +17,6 @@ export default {
     },
     [SET_NEWS_TYPE](state: IHomeState, payload: INavBarItem) {
         state.currentType = payload.type;
-
         state.newList = <INewsList> {
             hasMore: true,
             isLoading: false,
